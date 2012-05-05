@@ -1,0 +1,4 @@
+#JSGF V1.0;
+grammar default;
+public <default> = (attiva | spegni ) luce (A | B | C);
+

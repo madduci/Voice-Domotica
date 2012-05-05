@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE Component PUBLIC "-//OpenInterface//DTD Component XML V0.1//EN" "component.dtd">
+<Component id="ucl.tele.openinterface.component.crossplatform.speech.sphinx">
+	<Name value="SpeechRec"/>
+	<Language value="java"/>
+	<Container>
+		<Name value="."/>
+		<Format value="dir"/>
+		<Location>voicedomotica</Location>
+	</Container>
+	<IO>
+		<Facet id="rec_engine">
+			<Bin>
+				<CustomType type="javaclass" name="speech_recognition.SpeechRec" def="@OI_THIRDPARTYLIB_INSTALL_PREFIX@/sphinx4-1.0beta/sphinx4-1.0beta/lib/jsapi.jar|@OI_THIRDPARTYLIB_INSTALL_PREFIX@/sphinx4-1.0beta/sphinx4-1.0beta/lib/sphinx4.jar|@OI_THIRDPARTYLIB_INSTALL_PREFIX@/sphinx4-1.0beta/sphinx4-1.0beta/lib/WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz.jar|@OI_THIRDPARTYLIB_INSTALL_PREFIX@/sphinx4-1.0beta/sphinx4-1.0beta/lib/WSJ_8gau_13dCep_8kHz_31mel_200Hz_3500Hz.jar;@OI_THIRDPARTYLIB_INSTALL_PREFIX@/sphinx4-1.0beta/sphinx4-1.0beta/lib/TIDIGITS_8gau_13dCep_16k_40mel_130Hz_6800Hz.jar"/>
+			</Bin>
+			<Factory>
+				<Interface type="static_function">
+					<Name value="init"/>
+					<Return>
+						<Param name="speechEng">
+							<CustomType type="javaclass" name="speech_recognition.SpeechRec"/>
+						</Param>
+					</Return>
+				</Interface>
+			</Factory>
+			<Source id="VoiceEvent">
+				<Callback>
+					<Interface type="function">
+						<Name value="newEvent"/>
+						<Argument>
+							<Param name="cmd">
+								<Descr>Recognized Command</Descr>
+								<PrimitiveType name="string"/>
+							</Param>
+						</Argument>
+					</Interface>
+					<Setter>
+						<Interface type="function">
+							<Name value="setRecognitionEventListener"/>
+							<Argument>
+								<Param name="cback">
+									<Descr>Listener interface</Descr>
+									<CustomType type="javaclass" name="speech_recognition.RecognitionEventListener"/>
+								</Param>
+							</Argument>
+						</Interface>
+					</Setter>
+				</Callback>
+			</Source>
+		</Facet>
+	</IO>
+</Component>
